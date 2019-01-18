@@ -130,6 +130,6 @@ app.get('/section', cache('5 minutes'), function(req, res) {
     })
 })
 // Start the server
-app.listen(8080, () => {
+app.listen(8080, '0.0.0.0', () => {
  console.log('Go to http://localhost:8080');
 });
