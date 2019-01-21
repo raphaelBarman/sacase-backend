@@ -51,9 +51,11 @@ app.get('/actors', cache('5 minutes'), function (req, res) {
     connection.query(query, function (error, results, fields) {
         if (error) {
             console.log(error)
-            return []
+            results = []
         }
-      res.send(results)
+                
+        res.setHeader('Content-Type', 'application/json');
+        res.send(results)
     });
 
 });
@@ -124,8 +126,11 @@ app.get('/section', cache('5 minutes'), function(req, res) {
     connection.query(query, function(error, rows, fields) {
         if (error) {
             console.log(error)
-            return []
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify([]))
+            return
         }
+        res.setHeader('Content-Type', 'application/json');
         res.send(rows.filter(word => word.text.length > 2))
     })
 })
